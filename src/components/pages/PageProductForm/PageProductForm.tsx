@@ -113,7 +113,7 @@ export default function PageProductForm() {
       axios.put(`${API_PATHS.bff}/product`, productToSave)
         .then(() => history.push('/admin/products'));
     } else {
-      axios.post(API_PATHS.products, formattedValues)
+      axios.post(`${API_PATHS.bff}/products`, formattedValues)
         .then(() => history.push('/admin/products'));
     }
   };
@@ -123,9 +123,9 @@ export default function PageProductForm() {
       setIsLoading(false);
       return;
     }
-    axios.get(API_PATHS.products)
-      .then(res => {
-        setProduct(res.data);
+    axios.get(`${API_PATHS.bff}/products`)
+      .then(({ data: { data }}) => {
+        setProduct(data);
         setIsLoading(false);
       });
   }, [id]);
